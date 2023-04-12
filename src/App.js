@@ -8,7 +8,7 @@ import background2 from "./utils/cyberbot11.svg";
 
 import { getJsonWalletAddress } from "ethers/lib/utils";
 
-const contractAddress = "0x7fd0691b34DCaD29B73Ffc4e5c4d70768cd7337C";
+const contractAddress = "0x8114E8b01772d1D651dd1E067fa7aba07a98E8D6";
 const abi = contract.abi;
 
 function App() {
