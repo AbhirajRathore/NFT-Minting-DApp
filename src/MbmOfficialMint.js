@@ -2,12 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import contract from "./NFT.json";
 import { ethers } from "ethers";
-import background from "./utils/CBHome.png";
-import background1 from "./utils/cyberbot1.svg";
-import background2 from "./utils/cyberbot11.svg";
+import background from "./utils/mbmBuilding.jpg";
+import background1 from "./utils/mbmlogostatic.png";
+import background2 from "./utils/mbmlogostatic.png";
 
 import { getJsonWalletAddress } from "ethers/lib/utils";
-import { connectDB } from "./utils/dbConnect";
 
 // const express = require('express');
 // const uploadRoute = require('./uploadRoute');
@@ -175,25 +174,17 @@ function App() {
       <div>
         <input type="number" className="input2" min="1" placeholder="Quantity" ref={input2}></input><br/> 
         <button onClick={mintNft} className="cta-button mint-nft-button">
-          MINT NFT
+          MINT STUDENT DEGREE
         </button>
       </div>
    
     );
   };
 
-  const connectDatabase = async()=>{
-    try {
-      await connectDB('mongodb://localhost:27017/students')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   useEffect( () => {
     checkWalletIsConnected();
     getContract();
-    connectDatabase()
+    console.log("called");
   }, []);
 
   useEffect(() => {
@@ -229,7 +220,7 @@ function App() {
           "font-family": "Orbitron, sans-serif",
         }}
       >
-        CYBER BOTS
+        MBM UNIVERSITY JODHPUR
       </h1>
 
       {showOwnersPage ? (
@@ -247,7 +238,7 @@ function App() {
               <input type="number" className="input2" min="1" max="10" placeholder="Limit" ref={input3}></input>&emsp;&emsp;<br/>
               <button onClick={changeMintLimit} className="cta-button mint-nft-button1">CHANGE MINT LIMIT</button>&emsp;&emsp;<br/>
               <input type="number" className="input2" min="1" placeholder="Quantity" ref={input2}></input>&emsp;&emsp;<br/>
-              <button onClick={mintNft} className="cta-button mint-nft-button1 a">MINT NFT</button>&emsp;&emsp;
+              <button onClick={mintNft} className="cta-button mint-nft-button1 a">MINT NFT DEGREE</button>&emsp;&emsp;
               {(error == null) ? <p></p> : <p className="mintState1">{error}</p>} &emsp;&emsp;
               <h5 className="contractAddress">SMART CONTRACT ADDRESS:</h5>
               <p className="contractAddress1">{contractAddress}</p>
