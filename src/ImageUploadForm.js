@@ -12,6 +12,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import './ImageUploadForm.css';
 import building from "./utils/mbmBuilding.jpg";
 import logo from "./utils/logombm.gif";
+import axios from 'axios';
 const contractAddress = "0x8114E8b01772d1D651dd1E067fa7aba07a98E8D6";
 const abi = contract.abi;
 
@@ -20,10 +21,7 @@ export function ImageUploadForm() {
   const [imageFile, setImageFile] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
-  const handleFileChange = (event) => {
-    setImageFile(event.target.files[0]);
-  };
+  const [email, setEmail] = useState('')
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -33,26 +31,29 @@ export function ImageUploadForm() {
     setDescription(event.target.value);
   };
 
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
   const handleSubmit =async (event) => {
     event.preventDefault();
     
+    if(!title)
+      throw new Error('Name of student is important')
+    if(!email)
+      throw new Error('Email of student is important')
+    if(!description)
+      throw new Error('Enrollment Number of student is important')
 
     try {
-      const response = await fetch('/upload', {
-        method: 'POST',
-        // body: formData,
-      });
-
-      if (response.ok) {
-        console.log('Image uploaded successfully');
-        // Add any additional logic here, such as showing a success message or redirecting to a new page
-      } else {
-        console.error('Failed to upload image');
-        // Add any error handling logic here, such as showing an error message to the user
-      }
+      const response = await axios.post(`http://localhost:5000/student/save-details`,{
+        name: title,
+        email: email,
+        enrollmentNumber: description
+      })
+      window.alert("Details saved")
     } catch (error) {
-      console.error('Error uploading image', error);
-      // Add any error handling logic here, such as showing an error message to the user
+      window.alert("Something went wrong")
     }
   };
 
@@ -79,18 +80,18 @@ export function ImageUploadForm() {
           <Form.Control type="text" placeholder="Enter title" value={title} onChange={handleTitleChange} />
         </Form.Group>
 
-        <Form.Group controlId="description">
-          <Form.Label className="form-label text-white">Enrolement Number</Form.Label>
-          <Form.Control as="textarea" placeholder="Enter enrolement number" value={description} onChange={handleDescriptionChange} />
+        <Form.Group controlId="email">
+          <Form.Label className="form-label text-white">email Id</Form.Label>
+          <Form.Control as="textarea" placeholder="Enter email id" value={email} onChange={handleEmailChange} />
         </Form.Group>
 
-        {/* <Form.Group controlId="imageFile">
-          <Form.Label className="form-label">Upload Image</Form.Label>
-          <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
-        </Form.Group> */}
+        <Form.Group controlId="description">
+          <Form.Label className="form-label text-white">Enrollment Number</Form.Label>
+          <Form.Control as="textarea" placeholder="Enter enrollment number" value={description} onChange={handleDescriptionChange} />
+        </Form.Group>
 
-        <Button variant="primary" type="submit" className="submit-button" onClick={handleFileChange}>
-          Store
+        <Button variant="primary" type="submit" className="submit-button" onClick={handleSubmit}>
+          Upload
         </Button>
       </Form>
     </div>

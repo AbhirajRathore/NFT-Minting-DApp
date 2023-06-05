@@ -7,7 +7,6 @@ import background1 from "./utils/cyberbot1.svg";
 import background2 from "./utils/cyberbot11.svg";
 
 import { getJsonWalletAddress } from "ethers/lib/utils";
-import { connectDB } from "./utils/dbConnect";
 
 // const express = require('express');
 // const uploadRoute = require('./uploadRoute');
@@ -182,18 +181,9 @@ function App() {
     );
   };
 
-  const connectDatabase = async()=>{
-    try {
-      await connectDB('mongodb://localhost:27017/students')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   useEffect( () => {
     checkWalletIsConnected();
     getContract();
-    connectDatabase()
   }, []);
 
   useEffect(() => {
