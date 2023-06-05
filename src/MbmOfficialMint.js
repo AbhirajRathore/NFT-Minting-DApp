@@ -3,8 +3,9 @@ import "./App.css";
 import contract from "./NFT.json";
 import { ethers } from "ethers";
 import background from "./utils/mbmBuilding.jpg";
-import background1 from "./utils/mbmlogostatic.png";
-import background2 from "./utils/mbmlogostatic.png";
+import background1 from "./utils/mbmPark.jfif";
+import background2 from "./utils/profImage.jpg";
+import background4 from "./utils/endingPart.png"
 
 import { getJsonWalletAddress } from "ethers/lib/utils";
 
@@ -245,6 +246,9 @@ function App() {
             </div>
             <div className="column">
               <img src={background2} style={{width:"100%"}}/>
+            </div>
+            <div className="column">
+              <img src={background4} style={{width:"100%"}}/>
             </div>
           </div>
   

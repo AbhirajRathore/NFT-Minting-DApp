@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     
-    <ImageUploadForm/>
+    {/* <ImageUploadForm/> */}
+    {/* <App/> */}
+    <MbmOfficialMint/>
   </React.StrictMode>
 );
 

@@ -36,11 +36,11 @@ export function ImageUploadForm() {
   const handleSubmit =async (event) => {
     event.preventDefault();
     
-    
+
     try {
       const response = await fetch('/upload', {
         method: 'POST',
-        body: formData,
+        // body: formData,
       });
 
       if (response.ok) {
@@ -90,7 +90,7 @@ export function ImageUploadForm() {
         </Form.Group> */}
 
         <Button variant="primary" type="submit" className="submit-button" onClick={handleFileChange}>
-          Upload
+          Store
         </Button>
       </Form>
     </div>
